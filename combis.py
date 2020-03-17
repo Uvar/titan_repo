@@ -13,27 +13,27 @@ from collections import namedtuple
 titan = namedtuple("Titan", ["name", 'type', 'role'])
 
 Moloch = titan("Moloch", "Fire", ["Tank"])
-Sigurd = titan("Sigurd", "Water", ["Tank"])
 Angus = titan("Angus", "Earth", ["Tank"])
+Sigurd = titan("Sigurd", "Water", ["Tank"])
 
 Eden = titan("Eden", "Earth", ["Damage", "Utility"])
+Nova = titan("Nova", "Water", ["Damage"])
 Hyperion = titan("Hyperion", "Water", ["Damage", "Utility"])
-Araji = titan("Araji", "Fire", ["Damage"])
 
 Mairi = titan("Mairi", "Water", ["Utility"])
-Avalon = titan("Avalon", "Earth", ["Utility"])
 Ignis = titan("Ignis", "Fire", ["Utility"])
+Avalon = titan("Avalon", "Earth", ["Utility"])
 
-Nova = titan("Nova", "Water", ["Damage"])
 Vulcan = titan("Vulcan", "Fire", ["Damage"])
 Sylva = titan("Sylva", "Earth", ["Damage"])
+Araji = titan("Araji", "Fire", ["Damage"])
 
 tanks = [Moloch, Sigurd, Angus]
-damage = [Eden, Hyperion, Araji, Nova, Vulcan, Sylva]
-utility = [Eden, Hyperion, Nova, Mairi, Avalon, Ignis]
+damage = [Eden, Hyperion, Nova, Vulcan, Sylva, Araji]
+utility = [Eden, Nova, Hyperion, Mairi, Ignis, Avalon]
 
 titans = []
-_ = [titans.append(ttn) for ttn in tanks+damage+utility if not ttn in titans]
+_ = [titans.append(ttn) for ttn in tanks+utility+damage if not ttn in titans]
 
 
 def check_for_match(ttn_list1, ttn_list2):

@@ -58,7 +58,7 @@ def check_amount_water(ttn_list):
     return sum(["Water" in ttn.type for ttn in ttn_list])
 
 def check_amount_earth(ttn_list):
-    return sum(["Earth" in ttn.role for ttn in ttn_list])
+    return sum(["Earth" in ttn.type for ttn in ttn_list])
 
 def totem_active(ttn_list):
     return np.array([func(ttn_list) >=3 for func in 

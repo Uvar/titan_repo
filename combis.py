@@ -28,7 +28,7 @@ Vulcan = titan("Vulcan", "Fire", ["Damage"])
 Sylva = titan("Sylva", "Earth", ["Damage"])
 Araji = titan("Araji", "Fire", ["Damage"])
 
-tanks = [Moloch, Sigurd, Angus]
+tanks = [Moloch, Angus, Sigurd]
 damage = [Eden, Hyperion, Nova, Vulcan, Sylva, Araji]
 utility = [Eden, Nova, Hyperion, Mairi, Ignis, Avalon]
 
@@ -80,7 +80,7 @@ Team attacking: {}\ntotem: {}\ntanks: {}\nutility: {}\ndamage: {}".format(
           )
           
 #TODO refactor repetitive statements to something prettier..
-combinations = [draw for draw in it.combinations(titans, 5)]
+combinations = [draw for draw in it.combinations(titans, 5) if totem_active(draw)]
 outcomes = {"y": 1, "n": -1}
 if "current_state.csv" not in os.listdir():
     init = np.zeros(len(combinations), dtype=int)

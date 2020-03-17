@@ -90,42 +90,46 @@ attackers = []
 titan_menu = {1: Moloch, 2: Angus, 3: Sigurd, 4: Eden, 5: Nova, 6: Hyperion,
               7: Mairi, 8: Ignis, 9: Avalon, 10: Vulcan, 11: Sylva, 12: Araji}
 def show_titan_opts_d():
+    global defenders
     while True:
         while len(defenders) < 5:
             print("Time to select the defenders\nThe options are: ")
             _ = [print(k,":", v.name) for k,v in titan_menu.items()]
-            ttn = input("\nWho is defender #{}? ".format(len(defenders) + 1))
+            ttn = input("Who is defender #{}? ".format(len(defenders) + 1))
             if ttn in str(titan_menu.keys()):
-                defenders.append(titan_menu[ttn])
+                defenders.append(titan_menu[int(ttn)])
             else:
                 print("Option not recognized, let's try again")
-        cont = input("The chosen titans are: ", [tt.name for tt in defenders], "is this correct? [y/n]")
+        h = ", ".join([tt.name for tt in defenders])
+        cont = input("The chosen titans are: {}\nis this correct? [y/n] ".format(h))
         if cont in outcomes.keys():
             if cont == "y":
                 break
             elif cont == "n":
-                print("Okay, something went wrong, resetting!! .... \n .... \n)
+                print("Okay, something went wrong, resetting!! .... \n .... \n")
                 defenders = []
             else:
                 print("Option not recognized, let's try again!")
     return
 
 def show_titan_opts_a():
+    global attackers
     while True:
         while len(attackers) < 5:
-            print("Time to select the defenders\nThe options are: ")
+            print("Time to select the attackers\nThe options are: ")
             _ = [print(k,":", v.name) for k,v in titan_menu.items()]
-            ttn = input("\nWho is attacker #{}? ".format(len(attackers) + 1))
+            ttn = input("Who is attacker #{}? ".format(len(attackers) + 1))
             if ttn in str(titan_menu.keys()):
-                attackers.append(titan_menu[ttn])
+                attackers.append(titan_menu[int(ttn)])
             else:
                 print("Option not recognized, let's try again")
-        cont = input("The chosen titans are: ", [tt.name for tt in attackers], "is this correct? [y/n]")
+        h = ", ".join([tt.name for tt in attackers])
+        cont = input("The chosen titans are: {}\nis this correct? [y/n] ".format(h)) 
         if cont in outcomes.keys():
             if cont == "y":
                 break
             elif cont == "n":
-                print("Okay, something went wrong, resetting!! .... \n .... \n)
+                print("Okay, something went wrong, resetting!! .... \n .... \n")
                 attackers = []
             else:
                 print("Option not recognized, let's try again!")
@@ -133,12 +137,12 @@ def show_titan_opts_a():
 
 show_titan_opts_d()
 for i,c1 in enumerate(combinations):
-    if !check_for_match(c1, defenders):
+    if not check_for_match(c1, defenders):
         continue
     while True:
         show_titan_opts_a()
         for j,c2 in enumerate(combinations):
-            if !check_for_match(c2, attackers):
+            if not check_for_match(c2, attackers):
                 continue
             if grid.iloc[j,i] != 0:
                 print("We have this match already!")
@@ -154,6 +158,9 @@ for i,c1 in enumerate(combinations):
             while cont not in outcomes.keys():
                 print("Answer not recognized...")
                 cont = input("Want to continue now? [y/n]").lower()
+            if cont == "y":
+                attackers = []
+                break
             if cont == "n":
                 break
         if cont == "n":

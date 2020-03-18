@@ -146,7 +146,7 @@ for i,c1 in enumerate(combinations):
                 continue
             if grid.iloc[j,i] != 0:
                 print("We have this match already!")
-                continue
+                break
             print_summary_match(c1,c2)
             result = input("Did the attacking team win? [y/n]").lower()
             while result not in outcomes.keys():
@@ -154,15 +154,13 @@ for i,c1 in enumerate(combinations):
                 result = input("Did the attacking team win? [y/n]").lower()
             result = int(outcomes[result])
             grid.iloc[j,i] = result
+            break
+        cont = input("Want to continue now? [y/n]").lower()
+        while cont not in outcomes.keys():
+            print("Answer not recognized...")
             cont = input("Want to continue now? [y/n]").lower()
-            while cont not in outcomes.keys():
-                print("Answer not recognized...")
-                cont = input("Want to continue now? [y/n]").lower()
-            if cont == "y":
-                attackers = []
-                break
-            if cont == "n":
-                break
+        if cont == "y":
+            attackers = []
         if cont == "n":
             break
     if cont == "n":

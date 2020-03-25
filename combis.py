@@ -90,6 +90,8 @@ if "current_state.csv" not in os.listdir():
 else:
     grid = pd.read_csv("current_state.csv", decimal=",", sep=";").set_index("titan combination")
 for i,c1 in enumerate(combinations):
+    if not check_for_match(c1, [Araji, Mairi, Hyperion, Nova, Sigurd]):
+        continue
     for j,c2 in enumerate(combinations):
         if grid.iloc[j,i] != 0:
             continue
